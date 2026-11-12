@@ -1,0 +1,10 @@
+{
+    "$schema": "https://prettier.io/docs/en/configuration.json",
+    "arrowParens": "avoid",
+    "endOfLine": "lf",
+    "printWidth": 140,
+    "semi": false,
+    "singleQuote": true,
+    "tabWidth": 4,
+    "trailingComma": "es5"
+}
