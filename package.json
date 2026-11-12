@@ -1,64 +1,67 @@
 {
-    "name": "vbuild-vue",
-    "version": "1.0.1",
+    "name": "miaoma-vbuilder",
+    "version": "1.0.0",
     "description": "",
+    "type": "module",
     "main": "index.js",
     "scripts": {
-        "lint:vue": "eslint .",
+        "dev": "turbo run dev",
+        "build": "turbo run build",
+        "dev:builder": "pnpm --filter builder dev",
+        "dev:runner": "pnpm --filter runner dev",
+        "preview": "turbo run preview",
+        "lint:vue": "eslint --fix",
         "lint:style": "stylelint \"{packages,apps}/**/*.{css,scss,vue}\"",
-        "lint": "pnpm lint:vue && pnpm lint:style",
-        "lint-staged": "lint-staged",
-        "format": "prettier --write .",
+        "lint": "pnpm lint:ts && pnpm lint:style",
         "spellcheck": "cspell lint --dot --gitignore --color --cache --show-suggestions \"(packages|apps)/**/*.@(html|js|cjs|mjs|ts|tsx|css|scss|md|vue)\"",
+        "lint:staged": "lint-staged",
+        "typecheck": "pnpm --filter builder typecheck ",
         "commit": "git-cz",
-        "prepare": "husky install"
+        "prepare": "husky",
+        "clean": "rimraf \"{apps,packages}/**/{node_modules,docs,lib,dist,stats.html}\" node_modules pnpm-lock.yaml .eslintcache .cspellcache docs dist"
     },
     "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "devEngines": {
-        "packageManager": {
-            "name": "pnpm",
-            "version": "12.18.0",
-            "onFail": "download"
-        }
-    },
-    "packageManager": "pnpm@12.18.0",
-    "type": "module",
+    "author": "Heyi",
+    "license": "MiaoMaEdu",
     "config": {
         "commitizen": {
             "path": "node_modules/cz-git"
         }
     },
     "lint-staged": {
-        "*.{js,cjs,mjs,ts,tsx,vue}": "eslint --fix",
-        "*.{css,scss,vue}": "stylelint --fix --allow-empty-input",
-        "*.{js,cjs,mjs,ts,tsx,css,scss,md,vue,json}": "prettier --write --ignore-unknown"
-    },
-    "dependencies": {
-        "@commitlint/cli": "^21.2.4",
-        "@commitlint/config-conventional": "^21.2.4",
-        "@eslint/js": "^10.0.1",
-        "@typescript-eslint/parser": "^8.72.2",
-        "commitlint": "^21.2.4",
-        "cspell": "^10.4.1",
-        "cz-git": "^1.14.0",
-        "eslint": "^10.14.0",
-        "eslint-plugin-simple-import-sort": "^14.0.0",
-        "eslint-plugin-vue": "^10.12.1",
-        "globals": "17.14.0",
-        "husky": "^9.1.7",
-        "lint-staged": "^17.6.0",
-        "stylelint-config-standard-scss": "17.0.0",
-        "stylelint-config-standard-vue": "^2.0.0",
-        "vue-eslint-parser": "^10.4.2"
+        "*.{md,json}": [
+            "prettier --cache --write --no-error-on-unmatched-pattern"
+        ],
+        "*.{css,less}": [
+            "stylelint --fix",
+            "prettier --cache --write"
+        ],
+        "*.{js,jsx}": [
+            "eslint --fix",
+            "prettier --cache --write"
+        ],
+        "*.{ts,tsx}": [
+            "eslint --fix",
+            "prettier --cache --parser=typescript --write"
+        ]
     },
     "devDependencies": {
-        "commitizen": "^4.3.2",
-        "conventional-changelog-conventionalcommits": "^10.4.1",
-        "prettier": "^3.9.10",
-        "stylelint": "^17.16.0",
-        "stylelint-config-standard": "^40.0.0",
-        "typescript": "6.0.3"
+        "@commitlint/cli": "19.3.0",
+        "@commitlint/config-conventional": "19.2.2",
+        "eslint": "9.7.0",
+        "eslint-config-miaoma": "workspace:*",
+        "vue-eslint-parser": "9.4.3",
+        "stylelint": "16.7.0",
+        "stylelint-config-standard-vue": "1.0.0",
+        "stylelint-config-standard": "36.0.1",
+        "stylelint-config-standard-scss": "13.1.0",
+        "cspell": "8.10.4",
+        "husky": "9.0.11",
+        "lint-staged": "15.2.7",
+        "prettier": "3.3.3",
+        "cz-git": "1.9.3",
+        "commitizen": "4.3.0",
+        "rimraf": "6.0.1",
+        "turbo": "2.0.9"
     }
 }
