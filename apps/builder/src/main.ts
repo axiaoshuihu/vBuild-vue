@@ -2,6 +2,8 @@
  *   Copyright (c) 2026
  *   All rights reserved.
  */
+import '@/assets/main.css'
+
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 

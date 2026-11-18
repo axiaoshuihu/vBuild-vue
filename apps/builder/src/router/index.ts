@@ -4,25 +4,30 @@
  */
 import { createRouter, createWebHistory } from 'vue-router'
 
+import DataWave from '../views/dataWave.vue'
 import Index from '../views/index.vue'
 import PageLayout from '../views/pageLayout.vue'
 const routes = [
     {
-        path: '/',
+        path: '/api',
         name: 'index',
         component: Index,
         children: [
             {
-                path: '/sub',
-                name: 'subIndex',
-                component: Index,
+                path: 'pageLayout',
+                name: 'pageLayout',
+                component: PageLayout,
+            },
+            {
+                path: 'dataWave',
+                name: 'dataWave',
+                component: DataWave,
             },
         ],
     },
     {
-        path: '/pageLayout',
-        name: 'pageLayout',
-        component: PageLayout,
+        path: '/',
+        redirect: '/api/pageLayout',
     },
 ]
 
